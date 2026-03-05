@@ -1,10 +1,46 @@
+"use client"
+import { motion ,AnimatePresence} from "framer-motion";
 import React from "react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Work = () => {
+    const router=useRouter();
+  
+  const [open, setOpen] = useState(false);
+  const [close,setclose]=useState(false);
+  const [left,setleft]=useState(false);
+  const [right,setright]=useState(false)
+  const container={
+    hidden:{},
+    show:{
+      transition:{
+        delay:1,
+        staggerChildren:0.2,
+      },
+    },
+  };
+
+  const fadeUp={
+    hidden:{opacity:0,y:60},
+    show:{
+      opacity:1,
+      y:0,
+      transition:{
+        duration:0.5,
+      },
+    },
+  };
   return (
-    <div className="relative flex h-fit w-full justify-center border-b border-gray-200 bg-[#F0F0F0]">
+    <motion.div
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{once:true, amount:0.4}}
+    className="relative flex h-fit w-full justify-center border-b border-gray-200 bg-[#F0F0F0]" id="cases">
       <div className="flex w-[95%] flex-col gap-6 border-r border-l border-gray-200 bg-[#f0f0f0] px-3 pt-10 pb-10 md:px-6 lg:px-8 2xl:w-336">
-        <div className="flex w-fit items-center gap-2 rounded-4xl bg-black py-2 pr-3 pl-4 text-sm font-bold text-white">
+        <motion.div
+        variants={fadeUp} className="flex w-fit items-center gap-2 rounded-4xl bg-black py-2 pr-3 pl-4 text-sm font-bold text-white">
           <div>Work</div>
 
           <div className="rounded-full bg-black">
@@ -24,8 +60,9 @@ const Work = () => {
               />
             </svg>
           </div>
-        </div>
-        <div className="flex w-full flex-wrap items-center justify-between gap-4">
+        </motion.div>
+        <motion.div
+        variants={fadeUp} className="flex w-full flex-wrap items-center justify-between gap-4">
           <div className="h-fit w-auto text-5xl font-extrabold tracking-tighter text-black md:text-6xl lg:w-[50%] lg:text-7xl">
             Selected Work.
           </div>
@@ -45,11 +82,27 @@ const Work = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="relative flex h-fit w-full flex-col gap-2 rounded-3xl md:flex-row xl:flex-col xl:gap-1.5">
+        </motion.div>
+        <motion.div
+        variants={fadeUp} className="relative flex h-fit w-full flex-col gap-2 rounded-3xl md:flex-row xl:flex-col xl:gap-1.5">
           <div className="flex w-full flex-col gap-2 xl:flex-row">
-            <div className="relative flex min-h-80 flex-col justify-end rounded-3xl bg-[#F0F0F0] bg-[url('/images/work3.jpeg')] bg-cover bg-center p-2 lg:min-h-120 xl:flex-1">
-              <div className="bottom-2 flex w-full justify-between rounded-xl bg-[#F0F0F0] py-1.5 pr-1.5 pl-5">
+            <motion.div
+            initial={{backgroundSize:"130%"}}
+            whileHover={{backgroundSize:"120%"}}
+            transition={{duration:0.5}}
+              onHoverStart={() => setOpen(true)}
+              onHoverEnd={() => setOpen(false)}
+             className="relative flex min-h-80 flex-col justify-end rounded-3xl bg-[#F0F0F0] bg-[url('/images/work3.jpeg')] bg-cover bg-center overflow-hidden p-2 lg:min-h-120 xl:flex-1"
+             
+             >
+              <AnimatePresence>
+                {open && (   
+            <motion.div
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 100 }}
+              transition={{ duration: 0.3 }}
+              className="bottom-2 flex w-full justify-between rounded-xl bg-[#F0F0F0] py-1.5 pr-1.5 pl-5">
                 <div className="flex flex-col">
                   <div className="text-xl font-bold text-black">Stackwise</div>
                   <div className="text-gray-900">Design & Devlopment</div>
@@ -71,10 +124,27 @@ const Work = () => {
                     />
                   </svg>
                 </div>
-              </div>
-            </div>
-            <div className="relative flex min-h-80 flex-col justify-end rounded-3xl bg-[#F0F0F0] bg-[url('/images/work4.jpeg')] bg-cover bg-center p-2 lg:min-h-120 xl:flex-1">
-              <div className="bottom-2 flex w-full justify-between rounded-xl bg-[#F0F0F0] py-1.5 pr-1.5 pl-5">
+              </motion.div>
+              )}
+              </AnimatePresence>
+  
+            </motion.div>
+            <motion.div
+            initial={{backgroundSize:"130%"}}
+            whileHover={{backgroundSize:"120%"}}
+            transition={{duration:0.5}}
+               onHoverStart={() => setclose(true)}
+              onHoverEnd={() => setclose(false)}
+            className="relative flex min-h-80 flex-col justify-end rounded-3xl bg-[#F0F0F0] bg-[url('/images/work4.jpeg')] bg-cover bg-center p-2 lg:min-h-120 xl:flex-1 overflow-hidden">
+              
+              <AnimatePresence>
+                      {close && (
+                              <motion.div
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 100 }}
+              transition={{ duration: 0.3 }}
+              className="bottom-2 flex w-full justify-between rounded-xl bg-[#F0F0F0] py-1.5 pr-1.5 pl-5">
                 <div className="flex flex-col">
                   <div className="text-xl font-bold text-black">Stackwise</div>
                   <div className="text-gray-900">Design & Devlopment</div>
@@ -96,12 +166,30 @@ const Work = () => {
                     />
                   </svg>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+                )}
+              </AnimatePresence>
+        
+              
+          
+            </motion.div>
           </div>
           <div className="flex w-full flex-col gap-2 xl:flex-row">
-            <div className="relative flex min-h-80 flex-col justify-end rounded-3xl bg-[#F0F0F0] bg-[url('/images/work1.jpeg')] bg-cover bg-center p-2 lg:min-h-120 xl:flex-1">
-              <div className="bottom-2 flex w-full justify-between rounded-xl bg-[#F0F0F0] py-1.5 pr-1.5 pl-5">
+            <motion.div
+            initial={{backgroundSize:"130%"}}
+            whileHover={{backgroundSize:"120%"}}
+            transition={{duration:0.5}}
+              onHoverStart={() => setleft(true)}
+              onHoverEnd={() => setleft(false)}
+               className="relative flex min-h-80 flex-col justify-end rounded-3xl bg-[#F0F0F0] bg-[url('/images/work1.jpeg')] bg-cover bg-center p-2 lg:min-h-120 xl:flex-1 overflow-hidden">
+                <AnimatePresence>
+                  {left && (
+                    <motion.div
+                    initial={{ opacity: 0, y: 100 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 100 }}
+                    transition={{ duration: 0.3 }}      
+                    className="bottom-2 flex w-full justify-between rounded-xl bg-[#F0F0F0] py-1.5 pr-1.5 pl-5">
                 <div className="flex flex-col">
                   <div className="text-xl font-bold text-black">Stackwise</div>
                   <div className="text-gray-900">Design & Devlopment</div>
@@ -123,10 +211,29 @@ const Work = () => {
                     />
                   </svg>
                 </div>
-              </div>
-            </div>
-            <div className="relative flex min-h-80 flex-col justify-end rounded-3xl bg-[#F0F0F0] bg-[url('/images/work2.jpeg')] bg-cover bg-center p-2 lg:min-h-120 xl:flex-1">
-              <div className="bottom-2 flex w-full justify-between rounded-xl bg-[#F0F0F0] py-1.5 pr-1.5 pl-5">
+              </motion.div>
+                  )}
+                </AnimatePresence>
+
+
+  
+            </motion.div>
+            <motion.div
+             initial={{backgroundSize:"130%"}}
+            whileHover={{backgroundSize:"120%"}}
+            transition={{duration:0.5}}
+              onHoverStart={() => setright(true)}
+              onHoverEnd={() => setright(false)}
+            className="relative flex min-h-80 flex-col justify-end rounded-3xl bg-[#F0F0F0] bg-[url('/images/work2.jpeg')] bg-cover bg-center p-2 lg:min-h-120 xl:flex-1 overflow-hidden">
+
+                  <AnimatePresence>
+                    {right &&(          
+              <motion.div
+                initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 100 }}
+              transition={{ duration: 0.3 }}
+              className="bottom-2 flex w-full justify-between rounded-xl bg-[#F0F0F0] py-1.5 pr-1.5 pl-5">
                 <div className="flex flex-col">
                   <div className="text-xl font-bold text-black">Stackwise</div>
                   <div className="text-gray-900">Design & Devlopment</div>
@@ -148,12 +255,15 @@ const Work = () => {
                     />
                   </svg>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+                    )}
+                  </AnimatePresence>
+
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,6 +1,7 @@
 "use client";
 import { delay, motion } from "framer-motion";
 import React from "react";
+
 const container = {
   hidden: {},
   show: {
@@ -22,9 +23,16 @@ const fadeUp = {
 };
 const Services = () => {
   return (
-    <div className="relative flex h-fit w-full justify-center border-b border-gray-200 bg-[#F0F0F0]">
+    <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+           className="relative flex h-fit w-full justify-center border-b border-gray-200 bg-[#F0F0F0]" id="services">
       <div className="flex w-[95%] flex-col gap-6 border-r border-l border-gray-200 bg-[#f0f0f0] px-3 pt-10 pb-10 md:px-6 lg:px-8 2xl:w-336">
-        <div className="flex w-fit items-center gap-3 rounded-4xl bg-black py-2 pr-3 pl-4 text-sm font-bold text-white">
+        <motion.div 
+        variants={fadeUp}
+        className="flex w-fit items-center gap-3 rounded-4xl bg-black py-2 pr-3 pl-4 text-sm font-bold text-white">
           <div> Services</div>
 
           <div className="rounded-full bg-black">
@@ -44,8 +52,9 @@ const Services = () => {
               />
             </svg>
           </div>
-        </div>
-        <div className="flex w-full flex-wrap items-center justify-between gap-4">
+        </motion.div>
+        <motion.div
+        variants={fadeUp} className="flex w-full flex-wrap items-center justify-between gap-4">
           <div className="h-fit w-auto text-5xl font-extrabold tracking-tighter text-black md:text-6xl lg:w-[50%] lg:text-7xl">
             What We Do.
           </div>
@@ -63,12 +72,8 @@ const Services = () => {
               <div>results everytime.</div>
             </div>
           </div>
-        </div>
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.7 }}
+        </motion.div>
+        <div
           className="relative flex h-fit w-full flex-col gap-1.5 xl:flex-row xl:gap-3.5"
         >
           <motion.div
@@ -221,9 +226,9 @@ const Services = () => {
             </div>
             <div className="h-full w-full rounded-3xl bg-amber-400 bg-[url('/images/data.jpg')] bg-cover bg-center p-1 md:h-full xl:h-70"></div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

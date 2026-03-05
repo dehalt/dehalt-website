@@ -1,10 +1,37 @@
+"use client"
 import React from "react";
-
+import { delay,motion } from "framer-motion";
 const Talk = () => {
+  const container={
+    hidden:{},
+    show:{
+      transition:{
+        delay:1,
+        staggerChildren:0.2,
+      },
+    },
+  };
+  const fadeUp={
+    hidden:{opacity:0,y:60},
+    show:{
+      opacity:1,
+      y:0
+    },
+    transition:{
+        duration:0.5,
+    },
+  }
   return (
-    <div className="relative flex h-fit w-full justify-center border-b border-gray-200 bg-[#F0F0F0]">
+    <motion.div
+    variants={container}
+    initial="hidden"
+    whileInView="show"
+    viewport={{once:true,amount:0.4}}
+    className="relative flex h-fit w-full justify-center border-b border-gray-200 bg-[#F0F0F0]" id="about">
       <div className="flex w-[95%] flex-col gap-6 border-r border-l border-gray-200 bg-[#f0f0f0] px-3 pt-10 pb-10 md:px-6 lg:px-8 2xl:w-336">
-        <div className="flex w-fit items-center gap-2 rounded-4xl bg-black py-2 pr-3 pl-4 text-sm font-bold text-white">
+        <motion.div
+        variants={fadeUp}
+         className="flex w-fit items-center gap-2 rounded-4xl bg-black py-2 pr-3 pl-4 text-sm font-bold text-white">
           <div>Contact</div>
 
           <div className="rounded-full bg-black">
@@ -24,10 +51,12 @@ const Talk = () => {
               />
             </svg>
           </div>
-        </div>
-        <div className="flex w-full flex-col gap-3 lg:flex-row lg:gap-7">
+        </motion.div>
+        <motion.div
+        variants={fadeUp} className="flex w-full flex-col gap-3 lg:flex-row lg:gap-7">
           <div className="flex w-full flex-col gap-8 lg:justify-between">
-            <div className="flex w-full flex-wrap items-center justify-between gap-4 lg:w-fit">
+            <div
+            className="flex w-full flex-wrap items-center justify-between gap-4 lg:w-fit">
               <div className="h-fit w-auto text-5xl font-extrabold tracking-tighter text-black md:text-6xl lg:w-fit lg:text-7xl">
                 Let's Talk.
               </div>
@@ -48,7 +77,8 @@ const Talk = () => {
                 </div>
               </div>
             </div>
-            <div className="flex h-fit w-full flex-col gap-2 rounded-2xl bg-[#E5E5E5] p-2 md:flex-row lg:w-full">
+            <div
+             className="flex h-fit w-full flex-col gap-2 rounded-2xl bg-[#E5E5E5] p-2 md:flex-row lg:w-full">
               <div className="flex min-h-45 flex-col justify-between rounded-2xl bg-[#F0F0F0] px-6 py-6 md:w-full xl:flex-1">
                 <div className="w-full">
                   <svg
@@ -181,9 +211,9 @@ const Talk = () => {
               </button>
             </form>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

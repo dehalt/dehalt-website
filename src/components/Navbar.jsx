@@ -17,6 +17,30 @@ const Navbar = () => {
     setdata(!data);
   }
   console.log(data);
+
+  const dehaltref=()=>{
+    document.getElementById("dehalt")?.scrollIntoView({
+      behavior:"smooth"
+    })
+  }
+  const serviceref=()=>{
+    document.getElementById("services")?.scrollIntoView({
+      behavior:"smooth"
+    })
+  }
+
+  const caseref=()=>{
+    document.getElementById("cases")?.scrollIntoView({
+      behavior:"smooth"
+    })
+  }
+
+  const aboutref=()=>{
+    document.getElementById("about")?.scrollIntoView({
+      behavior:"smooth"
+    })
+  }
+
   return (
     <div className="logo_font fixed z-10 mt-1 flex h-auto w-[90%] items-center justify-between rounded-xl bg-[#f0f0f0]  py-2 text-3xl font-bold text-[#212121] sm:mt-3 sm:w-[90%] sm:py-2.5 lg:mt-5 lg:max-w-fit lg:gap-20 lg:py-3 xl:gap-60">
       <div className="flex items-center gap-1 py-0.5 px-4">
@@ -38,7 +62,7 @@ const Navbar = () => {
             />
           </svg>
         </span>
-        <span>Dehalt</span>
+        <span onClick={dehaltref} className="cursor-pointer">Dehalt</span>
       </div>
 
       <div className="flex justify-center rounded-sm bg-[#ff6600] p-1.5 lg:hidden mr-4" onClick={menu}>
@@ -63,9 +87,9 @@ const Navbar = () => {
 
 
       <div className="h-[full hidden w-full items-end lg:flex lg:gap-15">
-        <div className="text-2xl font-medium">Services</div>
-        <div className="text-2xl font-medium">Cases</div>
-        <div className="text-2xl font-medium">About</div>
+        <div className="text-2xl font-medium cursor-pointer" onClick={serviceref}>Services</div>
+        <div className="text-2xl font-medium cursor-pointer" onClick={caseref}>Cases</div>
+        <div className="text-2xl font-medium cursor-pointer" onClick={aboutref}>About</div>
       </div>
       <div className="hidden w-full items-center gap-2.5 p-0.5 font-bold lg:flex">
         <div className="text-2xl">Talk to us</div>
@@ -90,9 +114,9 @@ const Navbar = () => {
       </div>
             <div className={`h-140 w-full lg:hidden  absolute ${data ? "block" : "hidden"} mt-150`}>
           <div className=' h-42 md:w-auto bg-white mt-3   rounded-lg pt-1 pl-1 pr-1 '>
-          <div className='h-12 w-auto bg-gray-100 rounded-md pl-3 pt-3'><h1 className='text-[20px] font-bold'>Services</h1></div>
-          <div className='h-12 w-auto bg-gray-100 rounded-md mt-2 pl-3 pt-3'><h1 className='text-[20px]  font-bold'>Cases</h1></div>
-          <div className='h-12 w-auto bg-gray-100 rounded-md mt-2 pl-3 pt-3'><h1 className='text-[20px]  font-bold'>About</h1></div>
+          <div className='h-12 w-auto bg-gray-100 rounded-md pl-3 pt-3'><h1 className='text-[20px] font-bold' onClick={serviceref}>Services</h1></div>
+          <div className='h-12 w-auto bg-gray-100 rounded-md mt-2 pl-3 pt-3'><h1 className='text-[20px]  font-bold' onClick={caseref}>Cases</h1></div>
+          <div className='h-12 w-auto bg-gray-100 rounded-md mt-2 pl-3 pt-3'><h1 className='text-[20px]  font-bold' onClick={aboutref}>About</h1></div>
           </div>
           <div className='h-13 w-auto bg-white mt-1 rounded-md pt-1  flex  pr-2 '> 
             <div className='h-11 w-full  flex justify-end items-center text-lg gap-2'>

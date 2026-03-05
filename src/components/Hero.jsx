@@ -21,7 +21,7 @@ const fadeUp = {
 
 const Hero = () => {
   return (
-    <div className="flex h-auto w-full justify-center border-b border-gray-200">
+    <div className="flex h-auto w-full justify-center border-b border-gray-200" id="dehalt">
       <div className="flex w-[95%] flex-col gap-6 overflow-hidden border-r border-l border-gray-200 bg-[#f0f0f0] px-3 pt-52 pb-30 md:px-6 lg:px-8 xl:flex-row 2xl:w-336">
         <motion.div
           variants={container}

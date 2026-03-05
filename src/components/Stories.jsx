@@ -1,10 +1,37 @@
+"use client"
 import React from "react";
-
+import { delay,motion, stagger } from "framer-motion";
 const Stories = () => {
+  const container={
+    hidden:{},
+    show:{
+      transition:{
+        delay:1,
+        staggerChildren:0.2,
+      },
+    },
+  };
+
+  const fadeUp={
+    hidden:{opacity:0,y:60},
+    show:{
+      opacity:1,
+      y:0,
+      transition:{
+        duration:0.5,
+      },
+    },
+  };
   return (
-    <div className="relative flex h-fit w-full justify-center border-b border-gray-200 bg-[#F0F0F0]">
+    <motion.div
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{once:true,amount:0.4}}
+    className="relative flex h-fit w-full justify-center border-b border-gray-200 bg-[#F0F0F0]">
       <div className="flex w-[95%] flex-col gap-6 border-r border-l border-gray-200 bg-[#f0f0f0] px-3 pt-10 pb-10 md:px-6 lg:px-8 2xl:w-336">
-        <div className="flex w-fit items-center gap-2 rounded-4xl bg-black py-2 pr-3 pl-4 text-sm font-bold text-white">
+        <motion.div
+        variants={fadeUp} className="flex w-fit items-center gap-2 rounded-4xl bg-black py-2 pr-3 pl-4 text-sm font-bold text-white">
           <div>Reviews</div>
 
           <svg
@@ -22,8 +49,9 @@ const Stories = () => {
               strokeLinejoin="round"
             />
           </svg>
-        </div>
-        <div className="flex w-full flex-wrap items-center justify-between gap-4">
+        </motion.div>
+        <motion.div
+        variants={fadeUp} className="flex w-full flex-wrap items-center justify-between gap-4">
           <div className="h-fit w-auto text-5xl font-extrabold tracking-tighter text-black md:text-6xl lg:w-[50%] lg:text-7xl">
             Success stories.
           </div>
@@ -42,8 +70,9 @@ const Stories = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="no-scrollbar flex w-full gap-3 overflow-x-auto py-4">
+        </motion.div>
+        <motion.div
+        variants={fadeUp} className="no-scrollbar flex w-full gap-3 overflow-x-auto py-4">
           <div className="flex aspect-square w-[95%] max-w-200 shrink-0 flex-col justify-between rounded-2xl bg-white p-[7%] shadow-md transition-all duration-300 md:aspect-auto md:h-fit md:max-h-90 md:max-w-130 md:gap-20 md:p-10">
             <div className="md: flex h-fit items-center border-l-2 border-black pl-7 text-xl font-bold sm:text-3xl">
               "We saw 200% increase in Sales Qualified Leads"
@@ -91,9 +120,9 @@ const Stories = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,10 +1,37 @@
+"use client";
 import React from "react";
+import { delay,motion } from "framer-motion";
 
 const Whyus = () => {
+  const container = {
+  hidden: {},
+  show: {
+    transition: {
+      delay: 1,
+      staggerChildren: 0.2,
+    },
+  },
+};
+const fadeUp = {
+  hidden: { opacity: 0, y: 60 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
   return (
-    <div className="relative flex h-fit w-full justify-center border-b border-gray-200 bg-[#F0F0F0]">
+    <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+           className="relative flex h-fit w-full justify-center border-b border-gray-200 bg-[#F0F0F0]">
       <div className="flex w-[95%] flex-col gap-6 border-r border-l border-gray-200 bg-[#f0f0f0] px-3 pt-10 pb-10 md:px-6 lg:px-8 2xl:w-336">
-        <div className="flex w-fit items-center gap-2 rounded-4xl bg-black py-2 pr-3 pl-4 text-sm font-bold text-white">
+        <motion.div
+        variants={fadeUp} className="flex w-fit items-center gap-2 rounded-4xl bg-black py-2 pr-3 pl-4 text-sm font-bold text-white">
           <div>BENEFITS</div>
 
           <div className="rounded-full bg-black">
@@ -24,8 +51,9 @@ const Whyus = () => {
               />
             </svg>
           </div>
-        </div>
-        <div className="flex w-full flex-wrap items-center justify-between gap-4">
+        </motion.div>
+        <motion.div
+        variants={fadeUp} className="flex w-full flex-wrap items-center justify-between gap-4">
           <div className="h-fit w-auto text-5xl font-extrabold tracking-tighter text-black md:text-6xl lg:w-[50%] lg:text-7xl">
             Why Us ?
           </div>
@@ -46,10 +74,14 @@ const Whyus = () => {
               <div>adapt your engagement as your startup evolves.</div>
             </div>
           </div>
-        </div>
-        <div className="relative flex h-fit w-full flex-col gap-1.5 rounded-3xl bg-[#E5E5E5] p-2 md:flex-row xl:flex-col xl:gap-1.5">
-          <div className="flex w-full flex-col gap-1.5 xl:flex-row">
-            <div className="flex min-h-60 flex-col justify-between rounded-3xl bg-[#F0F0F0] px-6 py-6 xl:flex-1">
+        </motion.div>
+        
+         <motion.div variants={fadeUp}
+          className="relative flex h-fit w-full flex-col gap-1.5 rounded-3xl bg-[#E5E5E5] p-2 md:flex-row xl:flex-col xl:gap-1.5">
+          <div 
+           className="flex w-full flex-col gap-1.5 xl:flex-row">
+            <div
+           className="flex min-h-60 flex-col justify-between rounded-3xl bg-[#F0F0F0] px-6 py-6 xl:flex-1">
               <div className="w-full">
                 <svg
                   width="35"
@@ -76,7 +108,8 @@ const Whyus = () => {
                 </div>
               </div>
             </div>
-            <div className="flex min-h-60 flex-col justify-between rounded-3xl bg-[#F0F0F0] px-6 py-6 xl:flex-1">
+            <div 
+            className="flex min-h-60 flex-col justify-between rounded-3xl bg-[#F0F0F0] px-6 py-6 xl:flex-1">
               <div className="w-full">
                 <svg
                   width="35"
@@ -104,7 +137,8 @@ const Whyus = () => {
                 </div>
               </div>
             </div>
-            <div className="flex min-h-60 flex-col justify-between rounded-3xl bg-[#F0F0F0] px-6 py-6 xl:flex-1">
+            <div
+            variants={fadeUp} className="flex min-h-60 flex-col justify-between rounded-3xl bg-[#F0F0F0] px-6 py-6 xl:flex-1">
               <div className="w-full">
                 <svg
                   width="35"
@@ -132,8 +166,10 @@ const Whyus = () => {
               </div>
             </div>
           </div>
-          <div className="flex w-full flex-col gap-1.5 xl:flex-row">
-            <div className="flex min-h-60 flex-col justify-between rounded-3xl bg-[#F0F0F0] px-6 py-6 xl:flex-1">
+          <div
+           className="flex w-full flex-col gap-1.5 xl:flex-row">
+            <div 
+            variants={fadeUp} className="flex min-h-60 flex-col justify-between rounded-3xl bg-[#F0F0F0] px-6 py-6 xl:flex-1">
               <div className="w-full">
                 <svg
                   width="35"
@@ -160,7 +196,8 @@ const Whyus = () => {
                 </div>
               </div>
             </div>
-            <div className="flex min-h-60 flex-col justify-between rounded-3xl bg-[#F0F0F0] px-6 py-6 xl:flex-1">
+            <div 
+            variants={fadeUp} className="flex min-h-60 flex-col justify-between rounded-3xl bg-[#F0F0F0] px-6 py-6 xl:flex-1">
               <div className="w-full">
                 <svg
                   width="35"
@@ -186,7 +223,8 @@ const Whyus = () => {
                 </div>
               </div>
             </div>
-            <div className="flex min-h-60 flex-col justify-between rounded-3xl bg-[#F0F0F0] px-6 py-6 xl:flex-1">
+            <div 
+            variants={fadeUp} className="flex min-h-60 flex-col justify-between rounded-3xl bg-[#F0F0F0] px-6 py-6 xl:flex-1">
               <div className="w-full">
                 <svg
                   width="35"
@@ -214,9 +252,9 @@ const Whyus = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
