@@ -1,6 +1,8 @@
 "use client"
-import React from "react";
+import React, { useEffect } from "react";
 import { delay,motion } from "framer-motion";
+import { useState } from "react";
+
 const Talk = () => {
   const container={
     hidden:{},
@@ -21,6 +23,66 @@ const Talk = () => {
         duration:0.5,
     },
   }
+
+const [loading, setLoading] = useState(false);
+
+const [data, setData] = useState("");
+useEffect(() => {
+  if (data) {
+    const timer = setTimeout(() => {
+      setData("");
+    }, 3000);
+  }
+}, [data]); 
+
+
+const [table, setTable] = useState({
+  yourname: "",
+  email: "",
+  website: "",
+  message: ""
+});
+
+const handleChange = (e) => {
+  setTable({...table,[e.target.name]: e.target.value });
+};
+
+const submit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  try {
+
+    const res = await fetch("/api/sendmail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(table)
+    });
+
+    const result = await res.json();
+      
+    if (res.ok) {
+     
+      setData("Message sent");
+
+      setTable({
+        yourname: "",
+        email: "",
+        website: "",
+        message: ""
+      });
+
+    } else {
+      setData("Message not sent ");
+    }
+
+  } catch (err) {
+    console.log(err);
+    setData("Server error ");
+  }
+  setLoading(false);
+};
   return (
     <motion.div
     variants={container}
@@ -132,13 +194,16 @@ const Talk = () => {
             </div>
           </div>
           <div className="w-full rounded-2xl bg-black p-7">
-            <form className="space-y-6">
+            <form onSubmit={submit}  className="space-y-6">
               {/* Name */}
               <div>
                 <label className="mb-2 block text-sm text-neutral-400">
                   Your name <span className="text-white">*</span>
                 </label>
                 <input
+                  name="yourname"
+                  value={table.yourname}
+                  onChange={handleChange}
                   type="text"
                   placeholder="Your name"
                   className="w-full rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-white placeholder-neutral-500 focus:ring-2 focus:ring-white/20 focus:outline-none"
@@ -151,6 +216,9 @@ const Talk = () => {
                   E-mail <span className="text-white">*</span>
                 </label>
                 <input
+                  name="email"
+                  value={table.email}
+                  onChange={handleChange}
                   type="email"
                   placeholder="Your Email"
                   className="w-full rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-white placeholder-neutral-500 focus:ring-2 focus:ring-white/20 focus:outline-none"
@@ -163,6 +231,9 @@ const Talk = () => {
                   Website
                 </label>
                 <input
+                  name="website"
+                  value={table.website}
+                  onChange={handleChange}
                   type="text"
                   placeholder="Your Website"
                   className="w-full rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-white placeholder-neutral-500 focus:ring-2 focus:ring-white/20 focus:outline-none"
@@ -170,7 +241,7 @@ const Talk = () => {
               </div>
 
               {/* Pricing Model */}
-              <div>
+              {/* <div>
                 <label className="mb-3 block text-sm text-neutral-400">
                   Pricing model
                 </label>
@@ -188,7 +259,7 @@ const Talk = () => {
                     SINGLE PROJECT
                   </button>
                 </div>
-              </div>
+              </div> */}
 
               {/* Message */}
               <div>
@@ -196,24 +267,53 @@ const Talk = () => {
                   Message
                 </label>
                 <textarea
+                  name="message"
+                  value={table.message}
+                  onChange={handleChange}
                   rows="4"
+                  type="text"
                   placeholder="Your Message"
                   className="w-full resize-none rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-white placeholder-neutral-500 focus:ring-2 focus:ring-white/20 focus:outline-none"
                 />
               </div>
 
               {/* Submit */}
-              <button
+
+
+                <button
                 type="submit"
-                className="w-full rounded-full bg-neutral-200 py-4 font-bold text-black transition hover:bg-white"
+                onClick={submit}
+                className="w-full rounded-full bg-neutral-200 py-4 font-bold text-black transition hover:bg-white cursor-pointer"
               >
-                Get in touch
+                {loading ? "Loading..." :"Get in touch"}
               </button>
+
+              
             </form>
+           
           </div>
+
         </motion.div>
+
+
       </div>
+          
+        {data && <div className="absolute right-5 bottom-5 text-white">
+          <motion.div
+            initial={{opacity:0,x:100}}
+            animate={{opacity:1,x:0}}
+            exit={{opacity:0,x:100}}
+            transition={{duration:0.3}}
+            className="bg-black h-13 w-50 flex justify-center items-center rounded-2xl">
+            <div>
+            {data}
+            </div>
+          </motion.div>
+          
+          
+          </div>}
     </motion.div>
+    
   );
 };
 
