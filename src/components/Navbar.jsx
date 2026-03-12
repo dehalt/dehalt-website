@@ -48,7 +48,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className="logo_font fixed z-10 mt-1 flex h-auto w-[90%] items-center justify-between rounded-xl bg-[#f0f0f0]  py-2 text-3xl font-bold text-[#212121] sm:mt-3 sm:w-[90%] sm:py-2.5 lg:mt-5 lg:max-w-fit lg:gap-20 lg:py-3 xl:gap-60">
+    <div className="logo_font fixed z-10 mt-1 flex h-auto w-[90%] items-center justify-between rounded-xl bg-[#f0f0f0]  py-2 text-3xl font-bold text-[#212121] sm:mt-3 sm:w-[90%] sm:py-2.5 lg:mt-5 lg:max-w-fit lg:gap-150 lg:py-3 xl:gap-150">
       <div className="flex items-center gap-1 py-0.5 px-4">
         <span className="flex-1">
           {" "}
@@ -92,18 +92,18 @@ const Navbar = () => {
 
 
 
-      <div className="h-[full hidden w-full items-end lg:flex lg:gap-15">
+      {/* <div className="h-[full hidden w-full items-end lg:flex lg:gap-15">
         <div className="text-2xl font-medium cursor-pointer" onClick={serviceref}>Services</div>
         <div className="text-2xl font-medium cursor-pointer" onClick={caseref}>Cases</div>
         <div className="text-2xl font-medium cursor-pointer" onClick={aboutref}>About</div>
-      </div>
+      </div> */}
       <div className="hidden w-full items-center gap-2.5 p-0.5 font-bold lg:flex">
-        <div className="text-2xl cursor-pointer" onClick={talkref}>
+        <div className="text-2xl w-fit cursor-pointer" onClick={talkref}>
           Talk to us
         </div>
 
         <div className="h-full rounded-sm bg-[#ff6600] p-2 mr-2">
-          <svg
+          <svg onClick={talkref} className="cursor-pointer"
             width="20"
             height="20"
             viewBox="0 0 24 24"

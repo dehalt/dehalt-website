@@ -19,6 +19,10 @@ const fadeUp = {
   },
 };
 
+const gettouch=()=>{
+  document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+}
+
 const Hero = () => {
   return (
     <div className="flex h-auto w-full justify-center border-b border-gray-200" id="dehalt">
@@ -31,25 +35,25 @@ const Hero = () => {
         >
           <motion.div
             variants={fadeUp}
-            className="h-fit w-auto text-6xl font-extrabold text-black max-lg:text-6xl md:w-150 lg:text-8xl"
+            className="h-fit w-auto text-4xl font-extrabold text-black max-lg:text-6xl md:w-150 lg:text-7xl"
           >
-            We Make Ideas Real and Reliable.
+            Automated Client Reporting for Performance Marketing agencies.
           </motion.div>
 
           <motion.div
             variants={fadeUp}
             className="h-fit w-[70%] text-xl text-black lg:w-fit"
           >
-            From early concepts to production-ready MVPs.
+            Stop wasting hours on Client Reporting.
           </motion.div>
           <motion.div
             variants={fadeUp}
             className="flex w-fit items-center gap-2 rounded-4xl bg-[#FF5400] p-2 pl-4 font-bold text-black shadow-button"
           >
-            <div> Get in touch</div>
+            <div onClick={gettouch} className="cursor-pointer"> Get in touch</div>
 
             <div className="rounded-full bg-black p-1.5">
-              <svg
+              <svg onClick={gettouch} className="cursor-pointer"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
