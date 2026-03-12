@@ -1,7 +1,8 @@
 "use client"
 import React, { useEffect } from "react";
-import { delay,motion } from "framer-motion";
+import {motion,AnimatePresence} from "framer-motion";
 import { useState } from "react";
+
 
 const Talk = () => {
   const container={
@@ -313,8 +314,10 @@ const submit = async (e) => {
             </form>           
           </div>
         </motion.div>
-      </div>          
-        {data && <div className="absolute right-5 bottom-5 text-white">
+      </div>   
+      <AnimatePresence>
+
+                    {data && <div className="absolute right-5 bottom-5 text-white">
           <motion.div
             initial={{opacity:0,x:100}}
             animate={{opacity:1,x:0}}
@@ -326,6 +329,9 @@ const submit = async (e) => {
             </div>
           </motion.div>
           </div>}
+
+        </AnimatePresence>       
+
     </motion.div>  
   );
 };
