@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://dehalt.com
+
+# Sitemaps
+Sitemap: https://dehalt.com/sitemap.xml
