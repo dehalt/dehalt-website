@@ -13,14 +13,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Dehalt | Automate Marketing Reports",
-  description: "Automate marketing reports and dashboards for ecommerce businesses.",
+  title: "Dehalt",
+  description: "Automate marketing reports, dashboards, and PowerPoint presentations for ecommerce agencies. Turn campaign data into polished, client-ready reports automatically.",
 
   openGraph: {
-    title: "Dehalt | Automate Marketing Reports",
+    title: "Dehalt",
     description:
       "Automate marketing reports and dashboards for ecommerce businesses",
-    images: ["/images/og-image.png"],
+    images: ["/images/logo.png"],
+  },
+  icons: {
+    icon: "/dehaltad.ico",
+    apple: "/images/logo.png",
   },
 };
 

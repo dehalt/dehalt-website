@@ -6,7 +6,7 @@ import Whyus from "@/components/Whyus";
 import Work from "@/components/Work";
 import Stories from "@/components/Stories";
 import Talk from "@/components/Talk";
-import Footer from "@/components/Footer";
+import Footer from "@/components/Footer"; 
 import Siddu from "@/components/Siddu";
 export default function Home() {
   return (
