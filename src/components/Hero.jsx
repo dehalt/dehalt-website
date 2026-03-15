@@ -44,7 +44,7 @@ const Hero = () => {
             variants={fadeUp}
             className="h-fit w-[70%] text-xl text-black lg:w-fit"
           >
-            Stop wasting hours on Client Reporting.....
+            Stop wasting hours on Client Reporting.
           </motion.div>
           <motion.div
             variants={fadeUp}
