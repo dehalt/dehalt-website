@@ -51,6 +51,7 @@ const handleChange = (e) => {
 const submit = async (e) => {
   e.preventDefault();
   setLoading(true);
+
   try {
 
     const res = await fetch("/api/sendmail", {
@@ -83,6 +84,7 @@ const submit = async (e) => {
     setData("Server error ");
   }
   setLoading(false);
+
 };
   return (
     <motion.div
@@ -202,9 +204,9 @@ const submit = async (e) => {
                   Your Name <span className="text-white">*</span>
                 </label>
                 <input
-                  autoComplete="off"
+                required
+                  
                   name="yourname"
-                  spellCheck={false}
                   value={table.yourname}
                   onChange={handleChange}
                   type="text"
@@ -219,8 +221,7 @@ const submit = async (e) => {
                   E-mail <span className="text-white ">*</span>
                 </label>
                 <input
-                    autoComplete="off"
-                    spellCheck={false}
+                required 
                   name="email"
                   value={table.email}
                   onChange={handleChange}
@@ -236,9 +237,8 @@ const submit = async (e) => {
                   Website <span className="text-white">*</span>
                 </label>
                 <input
-                    autoComplete="off"
+                required    
                   name="website"
-                  spellCheck={false}
                   value={table.website}
                   onChange={handleChange}
                   type="text"
@@ -260,6 +260,7 @@ const submit = async (e) => {
                     DESIGN RETAINER
                   </button>
                   <button
+
                     type="button"
                     className="w-full rounded-lg border border-neutral-800 bg-neutral-900 py-3 text-sm tracking-wide text-white transition hover:bg-neutral-800"
                   >
@@ -274,20 +275,21 @@ const submit = async (e) => {
                   Message
                 </label>
                 <textarea
+                 
                   name="message"
-                  spellCheck={false}
+                 
                   value={table.message}
                   onChange={handleChange}
                   rows="4"
                   type="text"
                   placeholder="Your Message"
-                  className="w-full resize-none rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-white placeholder-neutral-500 focus:ring-2 focus:ring-white/20 focus:outline-none required:"
+                  className="w-full resize-none rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-white placeholder-neutral-500 focus:ring-2 focus:ring-white/20 focus:outline-none "
                 />
               </div>
               {/* Submit */}
                 <button
                 type="submit"
-                onClick={submit}
+                
                 className="w-full rounded-full bg-neutral-200 py-4 font-bold text-black transition hover:bg-white cursor-pointer "
               >
                 {loading ? (<div className="flex items-center justify-center">
