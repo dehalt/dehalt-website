@@ -56,7 +56,7 @@ const Navbar = () => {
         className="flex-1 w-8 h-8 overflow-hidden rounded-sm">
                   {" "}
   
-        <motion.img src="/images/logo.png" alt="Dehalt Logo" 
+        <motion.img src="/images/logo.png" alt="Dehalt Logo" onClick={dehaltref}
           initial={{scale:1.3}}
           whileHover={{scale:1.3}}
 
@@ -66,11 +66,11 @@ const Navbar = () => {
         />
 
         </motion.span>
-        <span onClick={dehaltref} className="cursor-pointer">Dehalt</span>
+        <span>Dehalt</span>
       </div>
 
-      <div className="flex justify-center rounded-sm bg-[#ff6600] p-1.5 lg:hidden mr-4" onClick={menu}>
-        <svg
+      {/* <div className="flex justify-center rounded-sm bg-[#ff6600] p-1.5 lg:hidden mr-4" >
+        <svg onClick={dehaltref} 
           width="20"
           height="20"
           viewBox="0 0 24 24"
@@ -86,7 +86,7 @@ const Navbar = () => {
           />
         </svg>
       </div>
-      
+       */}
 
 
 
@@ -96,7 +96,7 @@ const Navbar = () => {
         <div className="text-2xl font-medium cursor-pointer" onClick={aboutref}>About</div>
       </div> */}
       <div className="hidden w-full items-center gap-2.5 p-0.5 font-bold lg:flex">
-        <div className="text-2xl w-fit cursor-pointer" onClick={talkref}>
+        <div className="text-2xl w-fit cursor-pointer" >
           Talk to us
         </div>
 

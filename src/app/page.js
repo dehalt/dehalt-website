@@ -12,26 +12,30 @@ import { useEffect, useState } from "react";
 // import Siddu from "@/components/Siddu";
 export default function Home() {
 
-  const[loading,setloading]=useState(true);
+  const [startAnimation, setStartAnimation] = useState(false);
+ 
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setStartAnimation(true);
+  }, 500);
+
+  return () => clearTimeout(timer);
+}, []);
 
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setloading(false);
-    }, 5000);
+  if(!startAnimation){
+    return(
+      <div className="flex justify-center items-center h-screen w-full text-3xl font-bold  text-gray-300">
 
-    return () => clearTimeout(timer);
-  }, []);
+        <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    )
+  }
+ 
 
-if (loading) {
+
   return (
-    <div className="flex justify-center items-center h-screen w-full font-bold text-3xl text-gray-400">
-      Loading...
-    </div>
-  );
-}
-  return (
-    <div className="w-full h-screen bg-[#F0F0F0]  flex flex-col items-center overflow-x-hidden">
+    <div className="w-full h-screen bg-[#F0F0F0]  flex flex-col items-center overflow-x-hidden ">
       <Navbar />
       <Hero />
       <Services/>
