@@ -27,7 +27,7 @@ const Services = () => {
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.9}}
+          viewport={{ once: true, amount: 0.5 }}
            className="relative flex h-fit w-full justify-center border-b border-gray-200 bg-[#F0F0F0]" id="services">
       <div className="flex w-[95%] flex-col gap-6 border-r border-l border-gray-200 bg-[#f0f0f0] px-3 pt-10 pb-10 md:px-6 lg:px-8 2xl:w-336">
         <motion.div 
