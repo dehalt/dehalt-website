@@ -53,6 +53,7 @@ export default function Home() {
           opacity={1}
         />
         </div>
+
      
       <Navbar />
       <Hero />

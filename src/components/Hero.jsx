@@ -2,6 +2,7 @@
 import React from "react";
 import { easeIn, easeOut, motion } from "framer-motion";
 import CardSwap, { Card } from "./CardSwap.jsx";
+import VerticalLoop from "./VerticalLoop.jsx";
 const container = {
   hidden: {},
   show: {
@@ -18,6 +19,13 @@ const fadeUp = {
     transition: { duration: 0.5 },
   },
 };
+const images = [
+    '/images/recom.jpg',
+    '/images/work2.jpeg',
+    '/images/work3.jpeg',
+    '/images/work4.jpeg',
+];
+
 
 const gettouch = () => {
   document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
@@ -29,26 +37,36 @@ const Hero = () => {
       className="flex h-auto w-full justify-center border-b border-gray-200"
       id="dehalt"
     >
-      <div className="flex w-[95%] flex-col gap-6 overflow-hidden border-r border-l border-gray-200 bg-[#f0f0f0] px-3 pt-52 pb-30 md:px-6 lg:px-8 xl:flex-row 2xl:w-376">
+      <div className="flex w-[95%] flex-col gap-6 overflow-hidden border-r border-l border-gray-200 bg-[#f0f0f0] px-3  pb-30 md:px-6 lg:px-8 xl:flex-row xl:gap-25 lg:gap-0  lg:flex-row 2xl:w-376">
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="flex w-fit flex-col gap-6"
+          className="flex w-fit flex-col gap-6 pt-60  h-170"
         >
+          
+          <motion.div
+                    variants={fadeUp}
+                    className="flex w-fit items-start gap-3 rounded-xl bg-black px-3  py-1 justify-center   text-sm font-bold text-white"
+                  >
+                    <div><span className="text-[#FF5400]">//</span> Active with growing agencies <span className="text-[#FF5400]">//</span></div>
+          
+                    
+                  </motion.div>
           <motion.div
             variants={fadeUp}
-            className="h-fit w-auto text-4xl font-extrabold text-black max-lg:text-6xl md:w-150 lg:text-7xl"
+            className="h-fit w-fit text-4xl font-extrabold text-black max-lg:text-6xl md:w-150 lg:text-7xl lg:w-100 xl:w-150 "
           >
-            Automated Client Reporting for Performance Marketing agencies.
+            Operational Clarity for Faster <span className="text-[#4F4F4F]">Decisions</span>.
           </motion.div>
 
           <motion.div
             variants={fadeUp}
-            className="h-fit w-[70%] text-xl text-black lg:w-fit"
+            className="h-fit w-[70%] text-xl text-black lg:w-fit "
           >
             Stop wasting hours on Client Reporting.
           </motion.div>
+         
           <motion.div
             variants={fadeUp}
             className="shadow-button flex w-fit items-center gap-2 rounded-4xl bg-[#FF5400] p-2 pl-4 font-bold text-black"
@@ -82,11 +100,30 @@ const Hero = () => {
 
         <motion.div
           // variants={fadeUp}
-          // initial="hidden"
+          initial={
+            {
+              opacity:0
+            }
+          }
+          animate={{
+            opacity:1,
+            transition: {duration: 1,easeOut}
+            
+          }}
           // animate="show"
-          style={{ height: "415px", position: "relative" }}
-          className="hidden w-160 xl:flex"
-        ></motion.div>
+
+          style={{ position: "relative" }}
+          className=" w-300  h-100 hidden lg:flex  gap-2.5"
+
+        >
+
+       <VerticalLoop images={images} />
+
+      {/* reverse direction */}
+      <VerticalLoop images={images} reverse />
+
+
+        </motion.div>
       </div>
     </div>
   );
