@@ -5,12 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-     "postbuild": "next-sitemap",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
     "@lottiefiles/dotlottie-web": "^0.62.0",
+    "@studio-freight/lenis": "^1.0.42",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.34.2",
