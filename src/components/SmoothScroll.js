@@ -3,25 +3,29 @@
 import { useEffect } from 'react'
 import Lenis from '@studio-freight/lenis'
 
-export default function SmoothScroll() {
+export default function SmoothScroll({ children }) {
     useEffect(() => {
         const lenis = new Lenis({
-            duration: 2, // increase = slower scroll
+            lerp: 0.05,
+            wheelMultiplier: 0.7,
             smoothWheel: true,
-            smoothTouch: false, // keep mobile normal unless you want chaos
+            smoothTouch: false,
         })
+
+        let rafId
 
         function raf(time) {
             lenis.raf(time)
-            requestAnimationFrame(raf)
+            rafId = requestAnimationFrame(raf)
         }
 
-        requestAnimationFrame(raf)
+        rafId = requestAnimationFrame(raf)
 
         return () => {
+            cancelAnimationFrame(rafId)
             lenis.destroy()
         }
     }, [])
 
-    return null
+    return <>{children}</>
 }
