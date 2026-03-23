@@ -1,102 +1,102 @@
-"use client"
+"use client";
 import React, { useEffect } from "react";
-import {motion,AnimatePresence} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
-
 const Talk = () => {
-  const container={
-    hidden:{},
-    show:{
-      transition:{
-        delay:1,
-        staggerChildren:0.2,
+  const container = {
+    hidden: {},
+    show: {
+      transition: {
+        delay: 1,
+        staggerChildren: 0.2,
       },
     },
   };
-  const fadeUp={
-    hidden:{opacity:0,y:60},
-    show:{
-      opacity:1,
-      y:0
+  const fadeUp = {
+    hidden: { opacity: 0, y: 60 },
+    show: {
+      opacity: 1,
+      y: 0,
     },
-    transition:{
-        duration:0.5,
+    transition: {
+      duration: 0.5,
     },
-  }
+  };
 
-const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-const [data, setData] = useState("");
-useEffect(() => {
-  if (data) {
-    const timer = setTimeout(() => {
-      setData("");
-    }, 2000);
-  }
-}, [data]); 
+  const [data, setData] = useState("");
+  useEffect(() => {
+    if (data) {
+      const timer = setTimeout(() => {
+        setData("");
+      }, 2000);
+    }
+  }, [data]);
 
+  const [table, setTable] = useState({
+    yourname: "",
+    email: "",
+    website: "",
+    message: "",
+  });
 
-const [table, setTable] = useState({
-  yourname: "",
-  email: "",
-  website: "",
-  message: ""
-});
+  const handleChange = (e) => {
+    setTable({ ...table, [e.target.name]: e.target.value });
+  };
 
-const handleChange = (e) => {
-  setTable({...table,[e.target.name]: e.target.value });
-};
+  const submit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
-const submit = async (e) => {
-  e.preventDefault();
-  setLoading(true);
-
-  try {
-
-    const res = await fetch("/api/sendmail", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(table)
-    });
-
-    const result = await res.json();
-      
-    if (res.ok) {
-     
-      setData("Message sent");
-
-      setTable({
-        yourname: "",
-        email: "",
-        website: "",
-        message: ""
+    try {
+      const res = await fetch("/api/sendmail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(table),
       });
 
-    } else {
-      setData("Message not sent ");
+      const result = await res.json();
+
+      if (res.ok) {
+        setData("Message sent");
+
+        setTable({
+          yourname: "",
+          email: "",
+          website: "",
+          message: "",
+        });
+      } else {
+        setData("Message not sent ");
+      }
+    } catch (err) {
+      console.log(err);
+      setData("Server error ");
     }
-
-  } catch (err) {
-    console.log(err);
-    setData("Server error ");
-  }
-  setLoading(false);
-
-};
+    setLoading(false);
+  };
   return (
     <motion.div
-    variants={container}
-    initial="hidden"
-    whileInView="show"
-    viewport={{once:true,amount:0.4}}
-    className="relative flex h-fit w-full justify-center border-b border-gray-200 bg-[#F0F0F0]"  id="talk">
-      <div className="flex w-[95%] flex-col gap-6 border-r border-l border-gray-200 bg-[#f0f0f0] px-3 pt-10 pb-10 md:px-6 lg:px-8 2xl:w-336" id="contact">
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.4 }}
+      className="relative flex h-fit w-full justify-center border-b border-gray-200 bg-[#F0F0F0]"
+      id="talk"
+    >
+      <div
+        className="flex w-[95%] flex-col gap-6 border-r border-l border-gray-200 bg-[#f0f0f0] px-3 pt-10 pb-10 md:px-6 lg:px-8 2xl:w-376"
+        id="contact"
+      >
         <motion.div
-        variants={fadeUp}
-         className="flex w-fit items-center gap-2 rounded-4xl bg-black py-2 pr-3 pl-4 text-sm font-bold text-white"id="about">
+          variants={fadeUp}
+          className="flex w-fit items-center gap-2 rounded-4xl bg-black py-2 pr-3 pl-4 text-sm font-bold text-white"
+          id="about"
+        >
           <div>Contact</div>
 
           <div className="rounded-full bg-black">
@@ -118,10 +118,11 @@ const submit = async (e) => {
           </div>
         </motion.div>
         <motion.div
-        variants={fadeUp} className="flex w-full flex-col gap-3 lg:flex-row lg:gap-7">
+          variants={fadeUp}
+          className="flex w-full flex-col gap-3 lg:flex-row lg:gap-7"
+        >
           <div className="flex w-full flex-col gap-8 lg:justify-between">
-            <div
-            className="flex w-full flex-wrap items-center justify-between gap-4 lg:w-fit">
+            <div className="flex w-full flex-wrap items-center justify-between gap-4 lg:w-fit">
               <div className="h-fit w-auto text-5xl font-extrabold tracking-tighter text-black md:text-6xl lg:w-fit lg:text-7xl">
                 Let's Talk.
               </div>
@@ -142,8 +143,7 @@ const submit = async (e) => {
                 </div>
               </div>
             </div>
-            <div
-             className="flex h-fit w-full flex-col gap-2 rounded-2xl bg-[#E5E5E5] p-2 md:flex-row lg:w-full">
+            <div className="flex h-fit w-full flex-col gap-2 rounded-2xl bg-[#E5E5E5] p-2 md:flex-row lg:w-full">
               <div className="flex min-h-45 flex-col justify-between rounded-2xl bg-[#F0F0F0] px-6 py-6 md:w-full xl:flex-1">
                 <div className="w-full">
                   <svg
@@ -204,30 +204,29 @@ const submit = async (e) => {
                   Your Name <span className="text-white">*</span>
                 </label>
                 <input
-                required
-                  
+                  required
                   name="yourname"
                   value={table.yourname}
                   onChange={handleChange}
                   type="text"
                   placeholder="Your Name"
-                  className="w-full rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-white placeholder-neutral-500 focus:ring-2 focus:ring-white/20 focus:outline-none required:"
+                  className="required: w-full rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-white placeholder-neutral-500 focus:ring-2 focus:ring-white/20 focus:outline-none"
                 />
               </div>
 
               {/* Email */}
               <div>
                 <label className="mb-2 block text-sm text-neutral-400">
-                  E-mail <span className="text-white ">*</span>
+                  E-mail <span className="text-white">*</span>
                 </label>
                 <input
-                required 
+                  required
                   name="email"
                   value={table.email}
                   onChange={handleChange}
                   type="email"
                   placeholder="Your Email"
-                  className="w-full rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-white placeholder-neutral-500 focus:ring-2 focus:ring-white/20 focus:outline-none required:"
+                  className="required: w-full rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-white placeholder-neutral-500 focus:ring-2 focus:ring-white/20 focus:outline-none"
                 />
               </div>
 
@@ -237,13 +236,13 @@ const submit = async (e) => {
                   Website <span className="text-white">*</span>
                 </label>
                 <input
-                required    
+                  required
                   name="website"
                   value={table.website}
                   onChange={handleChange}
                   type="text"
                   placeholder="Your Website"
-                  className="w-full rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3  text-white placeholder-neutral-500 focus:ring-2 focus:ring-white/20 focus:outline-none required:"
+                  className="required: w-full rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-white placeholder-neutral-500 focus:ring-2 focus:ring-white/20 focus:outline-none"
                 />
               </div>
 
@@ -275,66 +274,65 @@ const submit = async (e) => {
                   Message
                 </label>
                 <textarea
-                 
                   name="message"
-                 
                   value={table.message}
                   onChange={handleChange}
                   rows="4"
                   type="text"
                   placeholder="Your Message"
-                  className="w-full resize-none rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-white placeholder-neutral-500 focus:ring-2 focus:ring-white/20 focus:outline-none "
+                  className="w-full resize-none rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-white placeholder-neutral-500 focus:ring-2 focus:ring-white/20 focus:outline-none"
                 />
               </div>
               {/* Submit */}
-                <button
+              <button
                 type="submit"
-                
-                className="w-full rounded-full bg-neutral-200 py-4 font-bold text-black transition hover:bg-white cursor-pointer "
+                className="w-full cursor-pointer rounded-full bg-neutral-200 py-4 font-bold text-black transition hover:bg-white"
               >
-                {loading ? (<div className="flex items-center justify-center">
-                  <div>Sending</div>
-          <div className="ml-2 flex ">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 -1 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10.3078 13.6923L15.1539 8.84619M20.1113 5.88867L16.0207 19.1833C15.6541 20.3747 15.4706 20.9707 15.1544 21.1683C14.8802 21.3396 14.5406 21.3683 14.2419 21.2443C13.8975 21.1014 13.618 20.5433 13.0603 19.428L10.4694 14.2461C10.3809 14.0691 10.3366 13.981 10.2775 13.9043C10.225 13.8363 10.1645 13.7749 10.0965 13.7225C10.0215 13.6647 9.93486 13.6214 9.76577 13.5369L4.57192 10.9399C3.45662 10.3823 2.89892 10.1032 2.75601 9.75879C2.63207 9.4601 2.66033 9.12023 2.83169 8.84597C3.02928 8.52974 3.62523 8.34603 4.81704 7.97932L18.1116 3.88867C19.0486 3.60038 19.5173 3.45635 19.8337 3.57253C20.1094 3.67373 20.3267 3.89084 20.4279 4.16651C20.544 4.48283 20.3999 4.95126 20.1119 5.88729L20.1113 5.88867Z"
-                stroke="#FF5400"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
-        </div>) : (<div>Get in touch</div>)}
+                {loading ? (
+                  <div className="flex items-center justify-center">
+                    <div>Sending</div>
+                    <div className="ml-2 flex">
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 -1 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M10.3078 13.6923L15.1539 8.84619M20.1113 5.88867L16.0207 19.1833C15.6541 20.3747 15.4706 20.9707 15.1544 21.1683C14.8802 21.3396 14.5406 21.3683 14.2419 21.2443C13.8975 21.1014 13.618 20.5433 13.0603 19.428L10.4694 14.2461C10.3809 14.0691 10.3366 13.981 10.2775 13.9043C10.225 13.8363 10.1645 13.7749 10.0965 13.7225C10.0215 13.6647 9.93486 13.6214 9.76577 13.5369L4.57192 10.9399C3.45662 10.3823 2.89892 10.1032 2.75601 9.75879C2.63207 9.4601 2.66033 9.12023 2.83169 8.84597C3.02928 8.52974 3.62523 8.34603 4.81704 7.97932L18.1116 3.88867C19.0486 3.60038 19.5173 3.45635 19.8337 3.57253C20.1094 3.67373 20.3267 3.89084 20.4279 4.16651C20.544 4.48283 20.3999 4.95126 20.1119 5.88729L20.1113 5.88867Z"
+                          stroke="#FF5400"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                ) : (
+                  <div>Get in touch</div>
+                )}
               </button>
-            </form>           
+            </form>
           </div>
         </motion.div>
-      </div>   
+      </div>
       <AnimatePresence>
-
-                    {data && <div className="absolute right-5 bottom-5 text-white">
-          <motion.div
-            initial={{opacity:0,x:100}}
-            animate={{opacity:1,x:0}}
-            exit={{opacity:0,x:100}}
-            transition={{duration:0.3}}
-            className="bg-black h-13 w-50 flex justify-center items-center rounded-2xl">
-            <div>
-            {data}
-            </div>
-          </motion.div>
-          </div>}
-
-        </AnimatePresence>       
-
-    </motion.div>  
+        {data && (
+          <div className="absolute right-5 bottom-5 text-white">
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 100 }}
+              transition={{ duration: 0.3 }}
+              className="flex h-13 w-50 items-center justify-center rounded-2xl bg-black"
+            >
+              <div>{data}</div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 };
 export default Talk;

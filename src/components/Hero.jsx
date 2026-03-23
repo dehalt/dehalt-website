@@ -15,18 +15,21 @@ const fadeUp = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1 },
+    transition: { duration: 0.5 },
   },
 };
 
-const gettouch=()=>{
+const gettouch = () => {
   document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
-}
+};
 
 const Hero = () => {
   return (
-    <div className="flex h-auto w-full justify-center border-b border-gray-200" id="dehalt">
-      <div className="flex w-[95%] flex-col gap-6 overflow-hidden border-r border-l border-gray-200 bg-[#f0f0f0] px-3 pt-52 pb-30 md:px-6 lg:px-8 xl:flex-row 2xl:w-336">
+    <div
+      className="flex h-auto w-full justify-center border-b border-gray-200"
+      id="dehalt"
+    >
+      <div className="flex w-[95%] flex-col gap-6 overflow-hidden border-r border-l border-gray-200 bg-[#f0f0f0] px-3 pt-52 pb-30 md:px-6 lg:px-8 xl:flex-row 2xl:w-376">
         <motion.div
           variants={container}
           initial="hidden"
@@ -48,12 +51,17 @@ const Hero = () => {
           </motion.div>
           <motion.div
             variants={fadeUp}
-            className="flex w-fit items-center gap-2 rounded-4xl bg-[#FF5400] p-2 pl-4 font-bold text-black shadow-button"
+            className="shadow-button flex w-fit items-center gap-2 rounded-4xl bg-[#FF5400] p-2 pl-4 font-bold text-black"
           >
-            <div onClick={gettouch} className="cursor-pointer"> Get in touch</div>
+            <div onClick={gettouch} className="cursor-pointer">
+              {" "}
+              Get in touch
+            </div>
 
             <div className="rounded-full bg-black p-1.5">
-              <svg onClick={gettouch} className="cursor-pointer"
+              <svg
+                onClick={gettouch}
+                className="cursor-pointer"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -78,24 +86,7 @@ const Hero = () => {
           // animate="show"
           style={{ height: "415px", position: "relative" }}
           className="hidden w-160 xl:flex"
-        >
-          <CardSwap
-            cardDistance={50}
-            verticalDistance={80}
-            delay={5000}
-            pauseOnHover={false}
-          >
-            <Card>
-              <div className="b-full h-full bg-amber-50 bg-[url('/images/mvp.jpg')] bg-cover bg-bottom-right"></div>
-            </Card>
-            <Card>
-              <div className="b-full h-full bg-amber-50 bg-[url('/images/data.jpg')] bg-cover bg-bottom-left"></div>
-            </Card>
-            <Card>
-              <div className="b-full h-full bg-amber-50 bg-[url('/images/recom.jpg')] bg-cover bg-bottom-left"></div>
-            </Card>
-          </CardSwap>
-        </motion.div>
+        ></motion.div>
       </div>
     </div>
   );
