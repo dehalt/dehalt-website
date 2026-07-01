@@ -68,7 +68,7 @@ const Services = () => {
           className="flex w-full flex-wrap items-center justify-between gap-4"
         >
           <div className="h-fit w-auto text-5xl font-extrabold tracking-tighter text-black md:text-6xl lg:w-[50%] lg:text-7xl">
-            What We Do.
+            What We Do .
           </div>
           <div className="h-fit px-1 pr-9 text-lg tracking-tighter text-gray-800 sm:pr-0">
             <div className="hidden sm:flex sm:gap-1">
